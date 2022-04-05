@@ -35,7 +35,7 @@ resource "cloudflare_argo_tunnel" "homelab" {
 
 # Not proxied, not accessible. Just a record for auto-created CNAMEs by external-dns.
 resource "cloudflare_record" "tunnel" {
-  for_each = {for z in data.cloudflare_zones.active.zones:  z => z.id}
+  for_each = {for z in data.cloudflare_zones.active.zones:  z.id => z.id}
   zone_id = each.value
   type    = "CNAME"
   name    = "homelab-tunnel"
