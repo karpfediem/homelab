@@ -1,5 +1,8 @@
-data "cloudflare_zone" "zone" {
-  name = "khuedoan.com"
+data "cloudflare_zones" "active" {
+  filter {
+    account_id = var.cloudflare_account_id
+    status     = "active"
+  }
 }
 
 data "cloudflare_api_token_permission_groups" "all" {}
@@ -32,7 +35,8 @@ resource "cloudflare_argo_tunnel" "homelab" {
 
 # Not proxied, not accessible. Just a record for auto-created CNAMEs by external-dns.
 resource "cloudflare_record" "tunnel" {
-  zone_id = data.cloudflare_zone.zone.id
+  for_each = {for z in data.cloudflare_zones.active.zones:  z => z.id}
+  zone_id = each.value
   type    = "CNAME"
   name    = "homelab-tunnel"
   value   = "${cloudflare_argo_tunnel.homelab.id}.cfargotunnel.com"
