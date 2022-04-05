@@ -15,6 +15,7 @@ RUN pacman --sync --refresh --noconfirm \
         docker \
         docker-compose \
         git \
+        glibc \
         graphviz \
         helm \
         kubectl \
