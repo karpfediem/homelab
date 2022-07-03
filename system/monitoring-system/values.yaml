@@ -6,6 +6,8 @@ kube-prometheus-stack:
       ingressClassName: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        hajimari.io/appName: Grafana
+        hajimari.io/icon: chart-bar
       hosts:
         - &host grafana.karpfen.dev
       tls:
@@ -16,6 +18,20 @@ kube-prometheus-stack:
       - name: Loki
         type: loki
         url: http://loki.loki:3100
+    envFromSecret: grafana-secrets
+    grafana.ini:
+      server:
+        root_url: https://grafana.karpfen.dev
+      auth.generic_oauth:
+        enabled: true
+        allow_sign_up: true
+        name: Dex
+        client_id: grafana-sso
+        client_secret: $__env{GRAFANA_SSO_CLIENT_SECRET}
+        scopes: openid profile email groups
+        auth_url: https://dex.karpfen.dev/auth
+        token_url: https://dex.karpfen.dev/token
+        api_url: https://dex.karpfen.dev/userinfo
 
   prometheus:
     prometheusSpec:

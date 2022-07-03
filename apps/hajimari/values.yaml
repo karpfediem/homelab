@@ -3,16 +3,13 @@ hajimari:
     tag: v0.2.0
   env:
     TZ: Europe/Berlin
-  hajimari:
-    defaultEnable: true
-    namespaceSelector:
-      any: true
   ingress:
     main:
       enabled: true
       ingressClassName: nginx
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-prod
+        hajimari.io/enable: 'false'
       hosts:
         - host: &host home.karpfen.dev
           paths:
@@ -22,3 +19,20 @@ hajimari:
         - secretName: hajimari-tls-certificate
           hosts:
             - *host
+  hajimari:
+    defaultEnable: true
+    namespaceSelector:
+      any: true
+    groups:
+      - name: Homelab
+        links:
+          - name: Documentation
+            url: https://homelab.karpfen.dev
+          - name: Public GitHub repository
+            url: https://github.com/khuedoan/homelab
+      - name: Managed services
+        links:
+          - name: Terraform Cloud
+            url: https://app.terraform.io
+          - name: Cloudflare
+            url: https://dash.cloudflare.com

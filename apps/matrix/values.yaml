@@ -6,6 +6,8 @@ elementweb:
       cert-manager.io/cluster-issuer: letsencrypt-prod
       external-dns.alpha.kubernetes.io/target: "homelab-tunnel.karpfen.dev"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
+      hajimari.io/appName: Chat
+      hajimari.io/icon: chat
     hosts:
       - host: &frontend_host chat.karpfen.dev
         paths:
@@ -29,9 +31,9 @@ dendrite:
     version: 2
     servername: &backend_host matrix.karpfen.dev
     database:
-      host:  "matrix-postgresql:5432"
-      user:  "dendrite"
-      password: "dendrite"
+      host: matrix-postgresql:5432
+      user: dendrite
+      password: dendrite
       max_open_conns: 100
       max_idle_conns: 2
       conn_max_lifetime: -1
@@ -73,6 +75,7 @@ dendrite:
       external-dns.alpha.kubernetes.io/target: "homelab-tunnel.karpfen.dev"
       external-dns.alpha.kubernetes.io/cloudflare-proxied: "true"
       nginx.ingress.kubernetes.io/proxy-body-size: 32m
+      hajimari.io/enable: 'false'
     hosts:
       - host: *backend_host
         paths:
