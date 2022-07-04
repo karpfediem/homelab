@@ -22,6 +22,9 @@ gitea:
       server:
         LANDING_PAGE: explore
         ROOT_URL: https://git.karpfen.dev
+      ui:
+        THEMES: auto,gitea,arc-green
+        DEFAULT_THEME: arc-green
   persistence:
     storageClass: longhorn
   postgresql:
