@@ -5,9 +5,7 @@
 KUBECONFIG = $(shell pwd)/metal/kubeconfig.yaml
 KUBE_CONFIG_PATH = $(KUBECONFIG)
 
-default: metal bootstrap wait
-
-all: metal bootstrap external wait
+default: metal bootstrap external wait
 
 configure:
 	./scripts/configure
@@ -28,9 +26,6 @@ wait:
 tools:
 	make -C tools
 
-docs:
-	make -C docs
-
 dev:
 	make -C metal cluster env=dev
 	make -C bootstrap
@@ -43,3 +38,6 @@ docs:
 		--publish 8000:8000 \
 		--volume $(shell pwd):/docs \
 		squidfunk/mkdocs-material
+
+git-hooks:
+	pre-commit install
