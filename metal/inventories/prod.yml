@@ -3,3 +3,6 @@ metal:
     masters:
       hosts:
         metal0: {ansible_host: 192.168.0.110, mac: '0A:FD:7D:BB:C2:40', disk: scsi0, network_interface: net0}
+    workers:
+      hosts:
+        icecube: {ansible_host: 192.168.0.15, mac: 'd8:5e:d3:8c:30:89', disk: nvme0n1, network_interface: enp2s0}
