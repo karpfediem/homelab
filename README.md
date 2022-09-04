@@ -47,6 +47,7 @@ More information can be found in [the roadmap](#roadmap) below.
 - [x] Modular architecture, easy to add or remove features/components
 - [x] Automated certificate management
 - [x] Automatically update DNS records for exposed services
+- [x] VPN without port forwarding
 - [x] Expose services to the internet securely with [Cloudflare Tunnel](https://www.cloudflare.com/products/tunnel/)
 - [x] CI/CD platform
 - [x] Private container registry
@@ -56,31 +57,42 @@ More information can be found in [the roadmap](#roadmap) below.
 - [ ] Automated offsite backups 🚧
 - [ ] Single sign-on 🚧
 
-Some demo videos and screenshots are shown here (click to enlarge).
+Some demo videos and screenshots are shown here.
 They can't capture all the project's features, but they are sufficient to get a concept of it.
 
-| [![][screenshot-01]](https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7)                     | [![][screenshot-02]](https://www.youtube.com/watch?v=y-d7btNNAT8)   |
-| :--:                                                                                        | :--:                                                                |
-| Deploy with a single command (after updating the configuration files)                       | PXE boot                                                            |
-| [![][screenshot-03]][screenshot-03]                                                         | [![][screenshot-04]][screenshot-04]                                 |
-| Homepage with Ingress discovery powered by [Hajimari](https://github.com/toboshii/hajimari) | Monitoring dashboard powered by [Grafana](https://grafana.com/)     |
-| [![][screenshot-05]][screenshot-05]                                                         | [![][screenshot-06]][screenshot-06]                                 |
-| Git server powered by [Gitea](https://gitea.io/en-us/)                                      | [Matrix](https://matrix.org/) chat server                           |
-| [![][screenshot-07]][screenshot-07]                                                         | [![][screenshot-08]][screenshot-08]                                 |
-| Continuous integration with [Tekton](https://tekton.dev/)                                   | Continuous deployment with [ArgoCD](https://argoproj.github.io/cd/) |
-| [![][screenshot-09]][screenshot-09]                                                         | [![][screenshot-10]][screenshot-10]                                 |
-| Cluster management using [Lens](https://k8slens.dev/)                                       | Secret management with [Vault](https://www.vaultproject.io/)        |
+| Demo                                                                                        |
+| :--:                                                                                        |
+| [![][deploy-demo]](https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7)                       |
+| Deploy with a single command (after updating the configuration files)                       |
+| [![][pxe-demo]](https://www.youtube.com/watch?v=y-d7btNNAT8)                                |
+| PXE boot                                                                                    |
+| [![][homepage-demo]][homepage-demo]                                                         |
+| Homepage with Ingress discovery powered by [Hajimari](https://github.com/toboshii/hajimari) |
+| [![][grafana-demo]][grafana-demo]                                                           |
+| Monitoring dashboard powered by [Grafana](https://grafana.com/)                             |
+| [![][gitea-demo]][gitea-demo]                                                               |
+| Git server powered by [Gitea](https://gitea.io/en-us/)                                      |
+| [![][matrix-demo]][matrix-demo]                                                             |
+| [Matrix](https://matrix.org/) chat server                                                   |
+| [![][tekton-demo]][tekton-demo]                                                             |
+| Continuous integration with [Tekton](https://tekton.dev/)                                   |
+| [![][argocd-demo]][argocd-demo]                                                             |
+| Continuous deployment with [ArgoCD](https://argoproj.github.io/cd/)                         |
+| [![][lens-demo]][lens-demo]                                                                 |
+| Cluster management using [Lens](https://k8slens.dev/)                                       |
+| [![][vault-demo]][vault-demo]                                                               |
+| Secret management with [Vault](https://www.vaultproject.io/)                                |
 
-[screenshot-01]: https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7.svg
-[screenshot-02]: https://user-images.githubusercontent.com/27996771/157303477-df2e7410-8f02-4648-a86c-71e6b7e89e35.png
-[screenshot-03]: https://user-images.githubusercontent.com/27996771/149445807-0f869eb7-d8f5-4fef-ab97-ac281df91a06.png
-[screenshot-04]: https://user-images.githubusercontent.com/27996771/149446631-1c5d056b-1fdc-48e6-96ba-e1abe1762be0.png
-[screenshot-05]: https://user-images.githubusercontent.com/27996771/149444871-38889c9d-862f-41ff-8c05-8ece21da3e9c.png
-[screenshot-06]: https://user-images.githubusercontent.com/27996771/149448510-7163310c-2049-4ccd-901d-f11f605bfc32.png
-[screenshot-07]: https://user-images.githubusercontent.com/27996771/149445374-58fd0605-bb9a-46e4-81d6-5e584d2b94a9.png
-[screenshot-08]: https://user-images.githubusercontent.com/27996771/149444716-fc0d7282-4cf7-4ddb-97a4-1a3fb47ff2b8.png
-[screenshot-09]: https://user-images.githubusercontent.com/27996771/149448896-9d79947d-468c-45c6-a81d-b43654e8ab6b.png
-[screenshot-10]: https://user-images.githubusercontent.com/27996771/149452309-de4a893b-e94c-4ba8-9119-ea87449cf77e.png
+[deploy-demo]: https://asciinema.org/a/xkBRkwC6e9RAzVuMDXH3nGHp7.svg
+[pxe-demo]: https://user-images.githubusercontent.com/27996771/157303477-df2e7410-8f02-4648-a86c-71e6b7e89e35.png
+[homepage-demo]: https://user-images.githubusercontent.com/27996771/149445807-0f869eb7-d8f5-4fef-ab97-ac281df91a06.png
+[grafana-demo]: https://user-images.githubusercontent.com/27996771/149446631-1c5d056b-1fdc-48e6-96ba-e1abe1762be0.png
+[gitea-demo]: https://user-images.githubusercontent.com/27996771/149444871-38889c9d-862f-41ff-8c05-8ece21da3e9c.png
+[matrix-demo]: https://user-images.githubusercontent.com/27996771/149448510-7163310c-2049-4ccd-901d-f11f605bfc32.png
+[tekton-demo]: https://user-images.githubusercontent.com/27996771/149445374-58fd0605-bb9a-46e4-81d6-5e584d2b94a9.png
+[argocd-demo]: https://user-images.githubusercontent.com/27996771/149444716-fc0d7282-4cf7-4ddb-97a4-1a3fb47ff2b8.png
+[lens-demo]: https://user-images.githubusercontent.com/27996771/149448896-9d79947d-468c-45c6-a81d-b43654e8ab6b.png
+[vault-demo]: https://user-images.githubusercontent.com/27996771/149452309-de4a893b-e94c-4ba8-9119-ea87449cf77e.png
 
 ### Tech stack
 
@@ -195,6 +207,11 @@ They can't capture all the project's features, but they are sufficient to get a 
         <td><a href="https://www.vaultproject.io">Vault</a></td>
         <td>Secrets and encryption management system</td>
     </tr>
+    <tr>
+        <td><img width="32" src="https://docs.zerotier.com/img/ZeroTierIcon.png"></td>
+        <td><a href="https://zerotier.com">ZeroTier</a></td>
+        <td>VPN without port forwarding</td>
+    </tr>
 </table>
 
 ## Get Started
@@ -245,6 +262,8 @@ Big shout-out to them!
 - ![](https://github.com/Crimrose.png?size=24) [@Crimrose](https://github.com/Crimrose)
 - ![](https://github.com/eventi.png?size=24) [@eventi](https://github.com/eventi)
 - ![](https://github.com/Bourne-ID.png?size=24) [@Bourne-ID](https://github.com/Bourne-ID)
+- ![](https://github.com/akwan.png?size=24) [@akwan](https://github.com/akwan)
+- ![](https://github.com/trangmaiq.png?size=24) [@trangmaiq](https://github.com/trangmaiq)
 
 If you feel you're missing from this list, feel free to add yourself in a PR.
 

@@ -1,10 +1,18 @@
 # Configuration
 
-Open the tools container, which includes all the tools needed:
+Open the [tools container](../../runbooks/tools-container.md), which includes all the tools needed:
 
-```sh
-make tools
-```
+=== "Docker"
+
+    ```sh
+    make tools
+    ```
+
+=== "Nix"
+
+    ```sh
+    nix-shell
+    ```
 
 !!! note
 

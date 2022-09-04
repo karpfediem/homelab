@@ -39,9 +39,17 @@ git checkout dev
 
 Open the tools container, which includes all the tools needed:
 
-```sh
-make tools
-```
+=== "Docker"
+
+    ```sh
+    make tools
+    ```
+
+=== "Nix"
+
+    ```sh
+    nix-shell
+    ```
 
 Build a development cluster and bootstrap it:
 
@@ -56,6 +64,8 @@ make
 ## Explore
 
 The homepage should be available at <https://home.127-0-0-1.nip.io> (ignore the security warning because we don't have valid certificates).
+
+See [admin credentials](../production/post-installation/#admin-credentials) for default passwords.
 
 ## Clean up
 
