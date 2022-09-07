@@ -16,6 +16,6 @@ projects:
       url: git@gitlab.com:argo-apps/vindi.app.git
 
 credentials:
-  - url: git@gitlab.com:argo-apps/
+  - url: git@gitlab.com
     secret: argo-deploy-key
     type: git
