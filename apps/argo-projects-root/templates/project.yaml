@@ -84,9 +84,9 @@ metadata:
 spec:
   # Project description
   description: {{ $project.description }}
-  # Allow manifests to deploy only from gitops repo
+  # Allow manifests to deploy from any repo
   sourceRepos:
-    - {{ $project.repo.url }}
+    - "*"
     # Only permit applications to deploy to the argocd namespace in the same cluster
   destinations:
     - namespace: argocd
