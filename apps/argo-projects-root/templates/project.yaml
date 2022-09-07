@@ -7,6 +7,7 @@ metadata:
   namespace: argocd
   labels:
     argocd.argoproj.io/secret-type: repo-creds
+    app.kubernetes.io/part-of: argocd
 spec:
   data:
     - remoteRef:
@@ -22,6 +23,10 @@ spec:
     creationPolicy: Owner
     deletionPolicy: Retain
     template:
+      metadata:
+        labels:
+          argocd.argoproj.io/secret-type: repo-creds
+          app.kubernetes.io/part-of: argocd
       data:
         type: {{ default "git" $credential.type }}
         name: {{ $credential.secret }}
@@ -39,6 +44,7 @@ metadata:
   namespace: argocd
   labels:
     argocd.argoproj.io/secret-type: repository
+    app.kubernetes.io/part-of: argocd
 spec:
   data:
     - remoteRef:
@@ -54,6 +60,10 @@ spec:
     creationPolicy: Owner
     deletionPolicy: Retain
     template:
+      metadata:
+        labels:
+          argocd.argoproj.io/secret-type: repository
+          app.kubernetes.io/part-of: argocd
       data:
         type: {{ default "git" $project.type }}
         name: {{ $project.name }}
