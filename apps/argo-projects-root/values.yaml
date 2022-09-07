@@ -1,13 +1,21 @@
 projects:
   - name: karpfen.fish
     description: Personal website
-    git:
-      repo: git@gitlab.com:argo-apps/karpfen.fish.git
+    repo:
+      url: git@gitlab.com:argo-apps/karpfen.fish.git
+      #revision: HEAD
+      #type: git
+      #secret: custom-key # Store in vault /gitops/ssh/custom-key with key 'private_key'
   - name: karpfen.dev
     description: Homelab apps and tools
-    git:
-      repo: git@gitlab.com:argo-apps/karpfen.dev.git
+    repo:
+      url: git@gitlab.com:argo-apps/karpfen.dev.git
   - name: vindi.app
     description: Vindictus Fansite
-    git:
-      repo: git@gitlab.com:argo-apps/vindi.app.git
+    repo:
+      url: git@gitlab.com:argo-apps/vindi.app.git
+
+credentials:
+  - url: git@gitlab.com:argo-apps/
+    secret: argo-deploy-key
+    type: git

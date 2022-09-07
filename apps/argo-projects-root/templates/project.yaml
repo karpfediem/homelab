@@ -1,17 +1,17 @@
-{{- range $index, $project := .Values.projects }}
+{{- range $index, $credential := .Values.credentials }}
 ---
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: {{ $project.name }}-private-repo
+  name: {{ $credential.secret }}-repo-creds
   namespace: argocd
   labels:
-    argocd.argoproj.io/secret-type: repository
+    argocd.argoproj.io/secret-type: repo-creds
 spec:
   data:
     - remoteRef:
         conversionStrategy: Default
-        key: /gitops/ssh/{{ default "argo-deploy-key" $project.git.secret }}
+        key: /gitops/ssh/{{ $credential.secret }}
         property: private_key
       secretKey: private_key
   refreshInterval: 1h
@@ -23,10 +23,41 @@ spec:
     deletionPolicy: Retain
     template:
       data:
-        type: git
+        type: {{ default "git" $credential.type }}
+        name: {{ $credential.secret }}
+        url: {{ $credential.url }}
+        sshPrivateKey: >-
+         {{ printf "{{ .private_key }}" }}
+      engineVersion: v2
+{{- range $index, $project := .Values.projects }}
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: {{ $project.name }}-repo
+  namespace: argocd
+  labels:
+    argocd.argoproj.io/secret-type: repository
+spec:
+  data:
+    - remoteRef:
+        conversionStrategy: Default
+        key: /gitops/ssh/{{ default "argo-deploy-key" $project.repo.secret }}
+        property: private_key
+      secretKey: private_key
+  refreshInterval: 1h
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: vault
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Retain
+    template:
+      data:
+        type: {{ default "git" $project.type }}
         name: {{ $project.name }}
         project: {{ $project.name }}
-        url: {{ $project.git.repo }}
+        url: {{ $project.repo.url }}
         sshPrivateKey: >-
          {{ printf "{{ .private_key }}" }}
       engineVersion: v2
@@ -44,7 +75,7 @@ spec:
   description: {{ $project.description }}
   # Allow manifests to deploy only from gitops repo
   sourceRepos:
-    - {{ $project.git.repo }}
+    - {{ $project.repo.url }}
     # Only permit applications to deploy to the argocd namespace in the same cluster
   destinations:
     - namespace: argocd
@@ -104,8 +135,8 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: {{ $project.git.repo }}
-        revision: {{ default "HEAD" $project.git.revision }}
+        repoURL: {{ $project.repo.url }}
+        revision: {{ default "HEAD" $project.repo.revision }}
   template:
     metadata:
       name: {{ $project.name }}-root
@@ -115,8 +146,8 @@ spec:
         namespace: argocd
       project: {{ $project.name }}
       source:
-        repoURL: {{ $project.git.repo }}
-        targetRevision: {{ $project.git.revision }}
+        repoURL: {{ $project.repo.url }}
+        targetRevision: {{ default "HEAD" $project.repo.revision }}
       syncPolicy:
         automated:
           prune: true
