@@ -1,0 +1,62 @@
+---
+apiVersion: external-secrets.io/v1beta1
+kind: ExternalSecret
+metadata:
+  name: backup-target-secret
+  namespace: longhorn-system
+spec:
+  secretStoreRef:
+    kind: ClusterSecretStore
+    name: vault
+  data:
+    - secretKey: AWS_ACCESS_KEY_ID
+      remoteRef:
+        key: /longhorn/backup
+        property: key_id
+    - secretKey: AWS_SECRET_ACCESS_KEY
+      remoteRef:
+        key: /longhorn/backup
+        property: access_key
+    - secretKey: AWS_ENDPOINTS
+      remoteRef:
+        key: /longhorn/backup
+        property: endpoints
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: snapshot-daily
+  namespace: longhorn-system
+spec:
+  cron: "0 0 * * *"
+  task: "snapshot"
+  groups:
+    - default
+  retain: 3
+  concurrency: 2
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: snapshot-weekly
+  namespace: longhorn-system
+spec:
+  cron: "0 0 1 * *"
+  task: "snapshot"
+  groups:
+    - default
+  retain: 3
+  concurrency: 2
+---
+apiVersion: longhorn.io/v1beta1
+kind: RecurringJob
+metadata:
+  name: snapshot-monthly
+  namespace: longhorn-system
+spec:
+  cron: "0 0 1 1 *"
+  task: "snapshot"
+  groups:
+    - default
+  retain: 3
+  concurrency: 2
