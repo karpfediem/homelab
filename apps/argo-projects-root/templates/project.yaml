@@ -1,22 +1,12 @@
 {{- range $index, $project := .Values.projects }}
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ $project.name }}-repo
-  namespace: argocd
-  labels:
-    argocd.argoproj.io/secret-type: repository
-stringData:
-  url: {{ $project.git.repo }}
----
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: {{ $project.name }}-private-repo-creds
+  name: {{ $project.name }}-private-repo
   namespace: argocd
   labels:
-    argocd.argoproj.io/secret-type: repo-creds
+    argocd.argoproj.io/secret-type: repository
 spec:
   data:
     - remoteRef:
@@ -34,6 +24,8 @@ spec:
     template:
       data:
         type: git
+        name: {{ $project.name }}
+        project: {{ $project.name }}
         url: {{ $project.git.repo }}
         sshPrivateKey: >-
          {{ printf "{{ .private_key }}" }}
