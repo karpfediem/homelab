@@ -87,9 +87,11 @@ spec:
   # Allow manifests to deploy from any repo
   sourceRepos:
     - "*"
-    # Only permit applications to deploy to the argocd namespace in the same cluster
+    # Only permit applications to deploy to the argocd and their own namespace in the same cluster
   destinations:
     - namespace: argocd
+      server: https://kubernetes.default.svc
+    - namespace: {{ $project.name }}
       server: https://kubernetes.default.svc
 
   # Deny all cluster-scoped resources from being created, except for Namespace
@@ -147,13 +149,13 @@ metadata:
   namespace: argocd
 spec:
   generators:
-  - list:
-      elements:
+    - list:
+        elements:
       {{- range $index, $project := .Values.projects }}
-      - name: {{ $project.name }}
-        url: {{ $project.repo.url }}
-        revision: {{ default "HEAD" $project.repo.revision }}
-        path: {{ default "apps" $project.repo.path }}
+          - name: {{ $project.name }}
+            url: {{ $project.repo.url }}
+            revision: {{ default "HEAD" $project.repo.revision }}
+            path: {{ default "apps" $project.repo.path }}
       {{- end }}
   template:
     metadata:
