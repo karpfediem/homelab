@@ -151,16 +151,16 @@ spec:
         elements: {{ .Values.projects }}
   template:
     metadata:
-      name: {{ name }}-root
+      name: {{ printf "{{ name }}" }}-root
     spec:
       destination:
         name: in-cluster
         namespace: argocd
-      project: {{ name }}
+      project: {{ printf "{{ name }}" }}
       source:
-        repoURL: {{ repo.url }}
-        targetRevision: {{ default "HEAD" repo.revision }}
-        path: {{ default "apps" repo.path }}
+        repoURL: {{ printf "{{ repo.url }}" }}
+        targetRevision: {{ printf "{{ default \"HEAD\" repo.revision }}" }}
+        path: {{ printf "{{ default \"apps\" repo.path }}" }}
       syncPolicy:
         automated:
           prune: true
