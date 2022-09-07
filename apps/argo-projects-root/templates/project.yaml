@@ -147,20 +147,26 @@ metadata:
   namespace: argocd
 spec:
   generators:
-    - list:
-        elements: {{ .Values.projects }}
+  - list:
+      elements:
+      {{- range $index, $project := .Values.projects }}
+      - name: {{ $project.name }}
+        url: {{ $project.repo.url }}
+        revision: {{ default "HEAD" $project.repo.revision }}
+        path: {{ default "apps" $project.repo.path }}
+      {{- end }}
   template:
     metadata:
-      name: {{ printf "{{ name }}" }}-root
+      name: {{ printf "'{{name}}-root'" }}
     spec:
       destination:
         name: in-cluster
         namespace: argocd
-      project: {{ printf "{{ name }}" }}
+      project: {{ printf "'{{name}}'" }}
       source:
-        repoURL: {{ printf "{{ repo.url }}" }}
-        targetRevision: {{ printf "{{ default \"HEAD\" repo.revision }}" }}
-        path: {{ printf "{{ default \"apps\" repo.path }}" }}
+        repoURL: {{ printf "'{{url}}'" }}
+        targetRevision: {{ printf "'{{revision}}'" }}
+        path: {{ printf "'{{path}}'" }}
       syncPolicy:
         automated:
           prune: true
