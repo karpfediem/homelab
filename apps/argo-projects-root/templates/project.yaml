@@ -91,7 +91,7 @@ spec:
   destinations:
     - namespace: argocd
       server: https://kubernetes.default.svc
-    - namespace: {{ $project.name }}
+    - namespace: {{ regexReplaceAll "\\W+" $project.name "-" }}
       server: https://kubernetes.default.svc
 
   # Deny all cluster-scoped resources from being created, except for Namespace
