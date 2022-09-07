@@ -2,25 +2,15 @@
 apiVersion: external-secrets.io/v1beta1
 kind: ExternalSecret
 metadata:
-  name: backup-target-secret
+  name: backup-secret
   namespace: longhorn-system
 spec:
   secretStoreRef:
     kind: ClusterSecretStore
     name: vault
-  data:
-    - secretKey: AWS_ACCESS_KEY_ID
-      remoteRef:
-        key: /longhorn/backup
-        property: key_id
-    - secretKey: AWS_SECRET_ACCESS_KEY
-      remoteRef:
-        key: /longhorn/backup
-        property: access_key
-    - secretKey: AWS_ENDPOINTS
-      remoteRef:
-        key: /longhorn/backup
-        property: endpoints
+  dataFrom:
+    - extract:
+        key: '/longhorn/backup'
 ---
 apiVersion: longhorn.io/v1beta1
 kind: RecurringJob
