@@ -11,6 +11,9 @@ spec:
   dataFrom:
     - extract:
         key: '/longhorn/backup'
+  target:
+    creationPolicy: Owner
+    deletionPolicy: Retain
 ---
 apiVersion: longhorn.io/v1beta1
 kind: RecurringJob
