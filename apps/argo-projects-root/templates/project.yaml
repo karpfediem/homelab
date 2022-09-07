@@ -159,6 +159,7 @@ spec:
       source:
         repoURL: {{ $project.repo.url }}
         targetRevision: {{ default "HEAD" $project.repo.revision }}
+        path: {{ default "apps" $project.repo.path }}
       syncPolicy:
         automated:
           prune: true
