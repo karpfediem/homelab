@@ -2,12 +2,12 @@ projects:
   - name: karpfen.fish
     description: Personal website
     git:
-      repo: https://gitlab.com/argo-apps/karpfen.fish
+      repo: git@gitlab.com:argo-apps/karpfen.fish.git
   - name: karpfen.dev
     description: Homelab apps and tools
     git:
-      repo: https://gitlab.com/argo-apps/karpfen.dev
+      repo: git@gitlab.com:argo-apps/karpfen.dev.git
   - name: vindi.app
     description: Vindictus Fansite
     git:
-      repo: https://gitlab.com/argo-apps/vindi.app
+      repo: git@gitlab.com:argo-apps/vindi.app.git
