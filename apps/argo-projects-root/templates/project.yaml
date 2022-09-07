@@ -33,10 +33,10 @@ spec:
     deletionPolicy: Retain
     template:
       data:
-        type: {{ "git" | b64enc | toString }}
-        url: {{ $project.git.repo | b64enc | toString }}
+        type: git
+        url: {{ $project.git.repo }}
         sshPrivateKey: >-
-         {{ printf "{{ .private_key | b64enc | toString }}" }}
+         {{ printf "{{ .private_key }}" }}
       engineVersion: v2
 ---
 apiVersion: argoproj.io/v1alpha1
