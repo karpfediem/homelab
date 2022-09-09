@@ -2,5 +2,6 @@ metal:
   children:
     masters:
       hosts:
-        betta: { ansible_host: 192.168.0.25, mac: '2e:e8:5e:bb:da:61', disk: sda2, network_interface: enp0s18 }
         icecube: { ansible_host: 192.168.0.15, mac: 'd8:5e:d3:8c:30:89', disk: nvme0n1, network_interface: enp2s0 }
+        betta: { ansible_host: 192.168.0.25, mac: '2e:e8:5e:bb:da:61', disk: sda2, network_interface: enp0s18 }
+        nutshell: { ansible_host: 192.168.0.35, mac: 'f0:2f:74:1f:a8:26', disk: nvme0n1, network_interface: enp2s0 }
