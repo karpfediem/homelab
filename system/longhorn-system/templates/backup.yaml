@@ -34,7 +34,7 @@ metadata:
   name: backup-weekly
   namespace: longhorn-system
 spec:
-  cron: "0 0 1 * *"
+  cron: "0 0 * * 0"
   task: "backup"
   groups:
     - default
@@ -47,7 +47,7 @@ metadata:
   name: backup-monthly
   namespace: longhorn-system
 spec:
-  cron: "0 0 1 1 *"
+  cron: "0 0 1 * *"
   task: "backup"
   groups:
     - default
@@ -73,7 +73,7 @@ metadata:
   name: snapshot-weekly
   namespace: longhorn-system
 spec:
-  cron: "0 0 1 * *"
+  cron: "0 0 * * 0"
   task: "snapshot"
   groups:
     - default
@@ -86,7 +86,7 @@ metadata:
   name: snapshot-monthly
   namespace: longhorn-system
 spec:
-  cron: "0 0 1 1 *"
+  cron: "0 0 1 * *"
   task: "snapshot"
   groups:
     - default
