@@ -9,6 +9,6 @@ ingress-nginx:
   tcp:
     22: gitea/gitea-ssh:22
   udp:
-    '7777': 'satisfactory-games-karpfen-dev/satisfactory:7777'
-    '15000': 'satisfactory-games-karpfen-dev/satisfactory:15000'
-    '15777': 'satisfactory-games-karpfen-dev/satisfactory:15777'
+    7777: satisfactory-games-karpfen-dev/satisfactory:7777
+    15000: satisfactory-games-karpfen-dev/satisfactory:15000
+    15777: satisfactory-games-karpfen-dev/satisfactory:15777
