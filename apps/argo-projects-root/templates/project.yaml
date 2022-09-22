@@ -91,8 +91,6 @@ spec:
   destinations:
     - namespace: argocd
       server: https://kubernetes.default.svc
-    - namespace: ingress-nginx
-      server: https://kubernetes.default.svc
     - namespace: {{ regexReplaceAll "\\W+" $project.name "-" }}
       server: https://kubernetes.default.svc
     - namespace: '*-{{ regexReplaceAll "\\W+" $project.name "-" }}'
