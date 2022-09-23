@@ -5,6 +5,7 @@ cloudflared:
     tunnel: homelab-udp
     ingress:
       - service: udp://traefik-udp.kube-system
+    protocol: quic
 
   podMonitor:
     enabled: true
