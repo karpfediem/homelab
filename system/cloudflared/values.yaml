@@ -4,6 +4,8 @@ cloudflared:
   config:
     tunnel: homelab
     ingress:
+      - hostname: '*.games.karpfen.dev'
+        service: traefik.kube-system
       - service: https://ingress-nginx-controller.ingress-nginx
         originRequest:
           noTLSVerify: true
