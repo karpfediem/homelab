@@ -27,10 +27,21 @@ resource "random_password" "tunnel_secret" {
   special = false
 }
 
+resource "random_password" "tunnel_secret_udp" {
+  length  = 64
+  special = false
+}
+
 resource "cloudflare_argo_tunnel" "homelab" {
   account_id = var.cloudflare_account_id
   name       = "homelab"
   secret     = base64encode(random_password.tunnel_secret.result)
+}
+
+resource "cloudflare_argo_tunnel" "homelab-udp" {
+  account_id = var.cloudflare_account_id
+  name       = "homelab-udp"
+  secret     = base64encode(random_password.tunnel_secret_udp.result)
 }
 
 # Not proxied, not accessible. Just a record for auto-created CNAMEs by external-dns.
@@ -56,6 +67,32 @@ resource "kubernetes_secret" "cloudflared_credentials" {
       TunnelName   = cloudflare_argo_tunnel.homelab.name
       TunnelID     = cloudflare_argo_tunnel.homelab.id
       TunnelSecret = base64encode(random_password.tunnel_secret.result)
+    })
+  }
+}
+
+resource "cloudflare_record" "tunnel_udp" {
+  for_each = {for z in data.cloudflare_zones.active.zones:  z.id => z.id}
+  zone_id = each.value
+  type    = "CNAME"
+  name    = "homelab-udp-tunnel"
+  value   = "${cloudflare_argo_tunnel.homelab-udp.id}.cfargotunnel.com"
+  proxied = false
+  ttl     = 1 # Auto
+}
+
+resource "kubernetes_secret" "cloudflared_credentials_udp" {
+  metadata {
+    name      = "cloudflared-credentials"
+    namespace = "cloudflared-udp"
+  }
+
+  data = {
+    "credentials.json" = jsonencode({
+      AccountTag   = var.cloudflare_account_id
+      TunnelName   = cloudflare_argo_tunnel.homelab-udp.name
+      TunnelID     = cloudflare_argo_tunnel.homelab-udp.id
+      TunnelSecret = base64encode(random_password.tunnel_secret_udp.result)
     })
   }
 }
