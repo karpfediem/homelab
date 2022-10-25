@@ -14,6 +14,16 @@ projects:
     description: Vindictus Fansite
     repo:
       url: git@gitlab.com:argo-apps/vindi.app.git
+  - name: data.vindi.app
+    description: surrealdb
+    repo:
+      url: git@gitlab.com:argo-apps/surrealdb.git
+      path: surrealdb
+    clusterResourceWhitelist:
+      - group: ''
+        kind: ClusterRole
+      - group: ''
+        kind: ClusterRoleBinding
 
 credentials:
   - url: git@gitlab.com
