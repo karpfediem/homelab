@@ -96,10 +96,13 @@ spec:
     - namespace: '*-{{ regexReplaceAll "\\W+" $project.name "-" }}'
       server: https://kubernetes.default.svc
 
-  # Deny all cluster-scoped resources from being created, except for Namespace
+  # Deny all cluster-scoped resources from being created, except for Namespace and custom whitelist per project
   clusterResourceWhitelist:
     - group: ''
       kind: Namespace
+  {{- with ($project.clusterResourceWhitelist) }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 
   # Allow all namespaced-scoped resources to be created, except for ResourceQuota, LimitRange, NetworkPolicy
   namespaceResourceBlacklist:
