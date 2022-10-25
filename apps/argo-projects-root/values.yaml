@@ -20,9 +20,9 @@ projects:
       url: git@gitlab.com:argo-apps/surrealdb.git
       path: surrealdb
     clusterResourceWhitelist:
-      - group: ''
+      - group: '*'
         kind: ClusterRole
-      - group: ''
+      - group: '*'
         kind: ClusterRoleBinding
 
 credentials:
