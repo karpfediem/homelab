@@ -10,6 +10,7 @@ spec:
         elements:
       {{- range $index, $project := .Values.projects }}
           - name: {{ $project.name }}
+            namespace: {{ regexReplaceAll "\\W+" $project.name "-" }}
             url: {{ $project.repo.url }}
             revision: {{ default "HEAD" $project.repo.revision }}
             path: {{ default "apps" $project.repo.path }}
@@ -26,6 +27,10 @@ spec:
         repoURL: {{ printf "'{{url}}'" }}
         targetRevision: {{ printf "'{{revision}}'" }}
         path: {{ printf "'{{path}}'" }}
+        helm:
+          values: |
+            project: {{ printf "'{{name}}'" }}
+            namespace: {{ printf "'{{namespace}}'" }}
       syncPolicy:
         automated:
           prune: true
