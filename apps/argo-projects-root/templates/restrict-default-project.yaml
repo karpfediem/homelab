@@ -8,6 +8,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
   name: default
+  namespace: argocd
 spec:
   description: DO NOT USE! - Argo CD's default project
   sourceRepos: [ ]
