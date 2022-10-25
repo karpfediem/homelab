@@ -146,44 +146,4 @@ spec:
       #  - iat: 1535390316
 
 {{- end }}
----
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: argo-apps-root
-  namespace: argocd
-spec:
-  generators:
-    - list:
-        elements:
-      {{- range $index, $project := .Values.projects }}
-          - name: {{ $project.name }}
-            url: {{ $project.repo.url }}
-            revision: {{ default "HEAD" $project.repo.revision }}
-            path: {{ default "apps" $project.repo.path }}
-      {{- end }}
-  template:
-    metadata:
-      name: {{ printf "'{{name}}-root'" }}
-    spec:
-      destination:
-        name: in-cluster
-        namespace: argocd
-      project: {{ printf "'{{name}}'" }}
-      source:
-        repoURL: {{ printf "'{{url}}'" }}
-        targetRevision: {{ printf "'{{revision}}'" }}
-        path: {{ printf "'{{path}}'" }}
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-        retry:
-          limit: 10
-          backoff:
-            duration: 1m
-            factor: 2
-            maxDuration: 16m
-        syncOptions:
-          - CreateNamespace=true
-          - ApplyOutOfSyncOnly=true
+
