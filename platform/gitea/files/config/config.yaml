@@ -18,6 +18,4 @@ repositories:
     migrate:
       source: https://github.com/karpfediem/homelab
       mirror: false
-    # TODO create webhook (use a global one?)
-    # webhooks:
-    #   - http://gitea-webhook.tekton-pipelines:3000
+    hook: true

@@ -1,5 +1,5 @@
-# https://status.nixos.org
-{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/f034b5693a26625f56068af983ed7727a60b5f8b.tar.gz") {} }:
+# https://status.nixos.org (nixpkgs-unstable)
+{ pkgs ? import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/e58a7747db96c23b8a977e7c1bbfc5753b81b6fa.tar.gz") {} }:
 
 let
   python-packages = pkgs.python3.withPackages (p: with p; [
@@ -19,8 +19,9 @@ pkgs.mkShell {
     docker-compose_1 # TODO upgrade to version 2
     git
     go
-    grc
+    gotestsum
     iproute2
+    jq
     k9s
     kube3d
     kubectl

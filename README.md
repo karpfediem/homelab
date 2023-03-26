@@ -56,6 +56,7 @@ More information can be found in [the roadmap](#roadmap) below.
 - [ ] Monitoring and alerting 🚧
 - [ ] Automated offsite backups 🚧
 - [ ] Single sign-on 🚧
+- [x] Infrastructure testing
 
 Some demo videos and screenshots are shown here.
 They can't capture all the project's features, but they are sufficient to get a concept of it.
@@ -125,7 +126,7 @@ They can't capture all the project's features, but they are sufficient to get a 
     <tr>
         <td><img width="32" src="https://www.docker.com/wp-content/uploads/2022/03/Moby-logo.png"></td>
         <td><a href="https://www.docker.com">Docker</a></td>
-        <td>Ephermeral PXE server and convenient tools container</td>
+        <td>Ephemeral PXE server and convenient tools container</td>
     </tr>
     <tr>
         <td><img width="32" src="https://github.com/kubernetes-sigs/external-dns/raw/master/docs/img/external-dns.png"></td>
@@ -240,6 +241,7 @@ See [license page](https://homelab.khuedoan.com/reference/license) or `LICENSE.m
 
 References:
 
+- [Ephemeral PXE server inspired by Minimal First Machine in the DC](https://speakerdeck.com/amcguign/minimal-first-machine-in-the-dc)
 - [ArgoCD usage and monitoring configuration in locmai/humble](https://github.com/locmai/humble)
 - [README template](https://github.com/othneildrew/Best-README-Template)
 - [Run the same Cloudflare Tunnel across many `cloudflared` processes](https://developers.cloudflare.com/cloudflare-one/tutorials/many-cfd-one-tunnel)
@@ -249,6 +251,8 @@ References:
 - [Initialize GitOps repository on Gitea and integrate with Tekton by RedHat](https://github.com/redhat-scholars/tekton-tutorial/tree/master/triggers)
 - [SSO configuration from xUnholy/k8s-gitops](https://github.com/xUnholy/k8s-gitops)
 - [Pre-commit config from k8s-at-home/flux-cluster-template](https://github.com/k8s-at-home/flux-cluster-template)
+- [Diátaxis technical documentation framework](https://diataxis.fr)
+- [Official Terratest examples](https://github.com/gruntwork-io/terratest/tree/master/test)
 
 Here is a list of the contributors who have helped to improve this project.
 Big shout-out to them!

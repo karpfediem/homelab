@@ -25,6 +25,8 @@ gitea:
       ui:
         THEMES: auto,gitea,arc-green
         DEFAULT_THEME: arc-green
+      webhook:
+        ALLOWED_HOST_LIST: private
   persistence:
     storageClass: longhorn
   postgresql:

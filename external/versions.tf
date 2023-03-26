@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.2.0"
+  required_version = "~> 1.3.0"
 
   backend "remote" {
     hostname     = "app.terraform.io"
@@ -23,7 +23,7 @@ terraform {
 
     http = {
       source  = "hashicorp/http"
-      version = "~> 2.1.0"
+      version = "~> 3.2.0"
     }
   }
 }
