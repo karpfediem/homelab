@@ -49,3 +49,4 @@ seafile:
       type: configMap
       name: seafdav-config
       mountPath: /opt/seafile/conf/seafdav.conf
+      subPath: seafdav.conf

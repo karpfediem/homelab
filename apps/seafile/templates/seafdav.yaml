@@ -2,6 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: seafdav-config
+  name: seafdav-config
 data:
-{{- (.Files.Glob "files/seafdav.conf").AsConfig }}
+  seafdav.conf: |-
+{{ .Files.Get "files/seafdav.conf" | indent 4 }}
