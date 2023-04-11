@@ -17,8 +17,7 @@ seafile:
         - secretName: seafile-tls-certificate
           hosts:
             - *host
-  env:
-    - SEAFILE_SERVER_HOSTNAME: seafile.karpfen.dev
+  env.SEAFILE_SERVER_HOSTNAME: seafile.karpfen.dev
   persistence:
     shared:
       enabled: true
@@ -26,6 +25,12 @@ seafile:
       accessMode: ReadWriteMany
       size: 20Gi
       mountPath: /shared/
+    seafdav:
+      enabled: true
+      type: configMap
+      mountPath: /opt/seafile/conf/seafdav.conf
+      data:
+        {{ (.Files.Glob "files/config/*").AsConfig | indent 2 }}
   mariadb:
     enabled: true
     primary:
