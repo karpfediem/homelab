@@ -17,6 +17,8 @@ seafile:
         - secretName: seafile-tls-certificate
           hosts:
             - *host
+  env:
+    - SEAFILE_SERVER_HOSTNAME: seafile.karpfen.dev
   persistence:
     shared:
       enabled: true
