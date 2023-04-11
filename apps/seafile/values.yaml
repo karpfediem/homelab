@@ -16,8 +16,6 @@ seafile:
         - secretName: seafile-tls-certificate
           hosts:
             - *host
-  mariadb:
-    enabled: true
   persistence:
     seafile-data:
       enabled: true
@@ -25,10 +23,12 @@ seafile:
       accessMode: ReadWriteMany
       size: 20Gi
       mountPath: /shared/seafile/seafile-data
-    data-mariadb:
-      enabled: true
-      type: pvc
-      accessMode: ReadWriteMany
-      size: 1Gi
-      mountPath: /var/lib/mysql/
-
+  mariadb:
+    enabled: true
+    persistence:
+      data-mariadb:
+        enabled: true
+        type: pvc
+        accessMode: ReadWriteMany
+        size: 1Gi
+        mountPath: /var/lib/mysql/
