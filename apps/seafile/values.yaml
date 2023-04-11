@@ -17,12 +17,12 @@ seafile:
           hosts:
             - *host
   persistence:
-    seafile-data:
+    shared:
       enabled: true
       type: pvc
       accessMode: ReadWriteMany
       size: 20Gi
-      mountPath: /shared/seafile/seafile-data
+      mountPath: /shared/
   mariadb:
     enabled: true
     primary:
