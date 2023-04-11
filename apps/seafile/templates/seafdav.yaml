@@ -1,8 +1,0 @@
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: seafdav-config
-data:
-  seafdav.conf: |-
-{{ .Files.Get "files/seafdav.conf" | indent 4 }}
