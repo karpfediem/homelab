@@ -25,10 +25,6 @@ seafile:
       mountPath: /shared/seafile/seafile-data
   mariadb:
     enabled: true
-    persistence:
-      data-mariadb:
+    primary:
+      persistence:
         enabled: true
-        type: pvc
-        accessMode: ReadWriteMany
-        size: 1Gi
-        mountPath: /var/lib/mysql/
