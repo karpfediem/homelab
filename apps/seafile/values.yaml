@@ -7,6 +7,8 @@ seafile:
         cert-manager.io/cluster-issuer: letsencrypt-prod
         hajimari.io/appName: Seafile
         hajimari.io/icon: google-drive
+        external-dns.alpha.kubernetes.io/cloudflare-proxied: 'true'
+        external-dns.alpha.kubernetes.io/target: homelab-tunnel.karpfen.dev
         nginx.ingress.kubernetes.io/proxy-body-size: "0"
       hosts:
         - host: &host seafile.karpfen.dev
