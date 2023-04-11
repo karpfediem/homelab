@@ -18,6 +18,11 @@ seafile:
           hosts:
             - *host
   env.SEAFILE_SERVER_HOSTNAME: seafile.karpfen.dev
+  mariadb:
+    enabled: true
+    primary:
+      persistence:
+        enabled: true
   persistence:
     shared:
       enabled: true
@@ -29,10 +34,5 @@ seafile:
       enabled: true
       type: configMap
       mountPath: /opt/seafile/conf/seafdav.conf
-      data:
-        {{ (.Files.Glob "files/config/*").AsConfig | indent 2 }}
-  mariadb:
-    enabled: true
-    primary:
-      persistence:
-        enabled: true
+      data: |
+{{ .Files.Get "files/seafdav.conf" }}
