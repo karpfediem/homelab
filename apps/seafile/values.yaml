@@ -30,9 +30,8 @@ seafile:
       accessMode: ReadWriteMany
       size: 20Gi
       mountPath: /shared/
-    seafdav:
+    seafdav-config:
       enabled: true
       type: configMap
+      name: seafdav-config
       mountPath: /opt/seafile/conf/seafdav.conf
-      data: |
-{{ .Files.Get "files/seafdav.conf" }}
