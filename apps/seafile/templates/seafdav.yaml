@@ -4,4 +4,4 @@ kind: ConfigMap
 metadata:
     name: seafdav-config
 data:
-    {{- (.Files.Glob "files/seafdav.conf").AsConfig }}
+{{- (.Files.Glob "files/seafdav.conf").AsConfig }}
