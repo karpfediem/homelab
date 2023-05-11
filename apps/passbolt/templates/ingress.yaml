@@ -20,7 +20,7 @@ spec:
               service:
                 name: passbolt
                 port:
-                  number: 80
+                  number: 443
   tls:
     - hosts:
         - *host
