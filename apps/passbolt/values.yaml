@@ -1,3 +1,7 @@
 passboltEnv:
   plain:
     APP_FULL_BASE_URL: https://passbolt.karpfen.dev
+service:
+  name: http
+  port: 80
+  target-port: 80
