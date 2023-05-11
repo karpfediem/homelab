@@ -1,5 +1,25 @@
 passbolt:
+  replicaCount: 2
+  redis:
+    auth:
+      enabled: true
+      existingSecret: redis-password
+  mariadb:
+    auth:
+      existingSecret: mariadb-secret
   passboltEnv:
     plain:
-      PASSBOLT_SSL_FORCE: false
+      # -- Configure passbolt fullBaseUrl
       APP_FULL_BASE_URL: https://passbolt.karpfen.dev
+      # -- Configure passbolt to force ssl
+      PASSBOLT_SSL_FORCE: false
+      # -- Configure passbolt default email service port
+      EMAIL_TRANSPORT_DEFAULT_PORT: 587
+      # -- Configure email used on gpg key. This is used when automatically creating a new gpg server key and when automatically calculating the fingerprint.
+      PASSBOLT_KEY_EMAIL: passbolt@karpfen.dev
+      # -- Configure passbolt default email from
+      EMAIL_DEFAULT_FROM: no-reply@karpfen.dev
+      # -- Configure passbolt default email host
+      EMAIL_TRANSPORT_DEFAULT_HOST: 127.0.0.1
+      # -- Toggle passbolt tls
+      EMAIL_TRANSPORT_DEFAULT_TLS: true
