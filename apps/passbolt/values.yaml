@@ -3,7 +3,7 @@ passbolt:
   redis:
     auth:
       enabled: true
-      existingSecret: redis-password
+      existingSecret: redis-secret
   mariadb:
     auth:
       existingSecret: mariadb-secret
