@@ -18,7 +18,7 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: passbolt
+                name: passbolt-http
                 port:
                   number: 80
   tls:

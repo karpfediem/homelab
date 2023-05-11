@@ -1,7 +1,4 @@
 passbolt:
-  service:
-    port: 80
-    targetPort: 80
   passboltEnv:
     plain:
       PASSBOLT_SSL_FORCE: false
